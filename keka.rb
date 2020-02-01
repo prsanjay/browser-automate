@@ -7,19 +7,18 @@ require 'pry'
 class Keka
   EMAIL       = 'john@doe.com'
   PASSWORD    = 'password'
-  URL         = 'https://changeme.keka.com/ui/#/home/dashboard'
-  ATTENDANCE  = 'https://changeme.keka.com/ui/#/me/attendance/logs'
+  URL         = 'https://changeme.keka.com/ui/#'
 
   def start
     browser = Watir::Browser.new
 
-    browser.goto(URL)
+    browser.goto("#{URL}/home/dashboard")
 
     browser.input(id: "email").send_keys(EMAIL)
     browser.input(id: "password").send_keys(PASSWORD)
     browser.button(text: 'Login').click
 
-    browser.goto(ATTENDANCE)
+    browser.goto("#{URL}/me/attendance/logs")
     sleep(15)
     if browser.a(:text => 'Web Clock-In').exist?
       browser.a(:text => 'Web Clock-In').click
